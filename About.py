@@ -6,11 +6,10 @@ __author__ = 'pbatra'
 # Changed look and Feel
 
 
-from PyQt4 import QtGui, QtCore
-#import PyQt4
+from PyQt6 import QtWidgets, QtGui, QtCore
 import sys
 #This is the current prod version
-class About(QtGui.QDialog):
+class About(QtWidgets.QDialog):
     def __init__(self):
         super(About,self).__init__()
         self.initUI()
@@ -23,16 +22,20 @@ class About(QtGui.QDialog):
 
         self.setWindowIcon(QtGui.QIcon('pkldll'))
         self.setFixedSize(300,200)                          #Setting size of About us
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
         q=self.frameGeometry()                               # We get a rectangle specifying the geometry of the main window. This includes any window frame.
-        cp=QtGui.QDesktopWidget().availableGeometry().center()          #We figure out the screen resolution of our monitor. And from this resolution, we get the center point.
+        # cp=QtGui.QDesktopWidget().availableGeometry().center()          #We figure out the screen resolution of our monitor. And from this resolution, we get the center point.
+        # PyQt6: QDesktopWidget is removed. Use QScreen.availableGeometry()
+        screen = QtGui.QGuiApplication.primaryScreen()
+        cp = screen.availableGeometry().center()
+        
         q.moveCenter(cp)                                            #Now we set the center of the rectangle to the center of the screen
         self.move(q.topLeft())                                         #We move the top-left point of the application window to the top-left point of the q rectangle
 
         # Setting style sheet for the about us dialog window
 
 
-        label=QtGui.QLabel(self)
+        label=QtWidgets.QLabel(self)
         label.setGeometry(190,0,100,100)
         label.show()
         font1= QtGui.QFont("Comic Sans MS",6)
@@ -40,14 +43,14 @@ class About(QtGui.QDialog):
         font1.setBold(False)
 
 
-        labelTag=QtGui.QLabel(self)
+        labelTag=QtWidgets.QLabel(self)
         labelTag.setGeometry(190,80,140,100)
         labelTag.setText("Its all about What do u want !\n\n"
                          "Sno. 280820130000001")
         labelTag.setFont(font1)
         labelTag.show()
         # Putting a Button on the About us Dialog box
-        OkButton=QtGui.QPushButton("OK",self)
+        OkButton=QtWidgets.QPushButton("OK",self)
         OkButton.move(220,170)
         OkButton.show()
         OkButton.setFocus()
@@ -59,7 +62,7 @@ class About(QtGui.QDialog):
         font.setBold(False)
 
         # Putting a Label on About us Dialog Box
-        labelAboutUs=QtGui.QLabel(self)
+        labelAboutUs=QtWidgets.QLabel(self)
         labelAboutUs.setText("\nSimple BODMAS Calcular : \n"
                              "It Does Maths using BODMAS Rule \n\n\n"
                              "Author - Paarth Batra \n"
@@ -79,9 +82,9 @@ class About(QtGui.QDialog):
         labelAboutUs.setStyleSheet("color:#003300;")
         OkButton.setStyleSheet("background-color: #DCDCDC;")
 
-        self.setFocus(True)
+        self.setFocus()
         self.setModal(True)
-        self.exec_()
+        self.exec()
 
 
 

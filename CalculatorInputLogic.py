@@ -41,28 +41,28 @@ import math
 class CalculatorInputLogic():
 
     def findLastNumber(self,inputLineE):
-        print "original inputLineE is ",inputLineE
+        print("original inputLineE is ",inputLineE)
         inputLineE = inputLineE.replace("(","")
-        print "( is replced now str is ", inputLineE
+        print("( is replced now str is ", inputLineE)
         inputLineE = inputLineE.replace(")","")
-        print ") is replced now str is ", inputLineE
+        print(") is replced now str is ", inputLineE)
         while True:
             try:
-                print "Trying on"+inputLineE
+                print("Trying on"+inputLineE)
                 result = float(inputLineE) + 0
                 return result
             except :
 
                 inputLineE = inputLineE[:-1]
-                print "In Exception block inputLineE changed to",inputLineE
+                print("In Exception block inputLineE changed to",inputLineE)
 
     def showExpression(self,classobj):
-        print "\n\n\n\nWelcome to Show Expression function. I will put full expression in lineEU and if its valid ,result in lineE"
-        print "Current line EU is ",classobj.lineEU
-        print "Current line E is ",classobj.lineE
+        print("\n\n\n\nWelcome to Show Expression function. I will put full expression in lineEU and if its valid ,result in lineE")
+        print("Current line EU is ",classobj.lineEU)
+        print("Current line E is ",classobj.lineE)
 
         if classobj.lineE == classobj.lineEU or classobj.lineEU == "":
-            print "values are same so setting classobj.setlineE = lineEU and classobj.setlineEU = lineEU"
+            print("values are same so setting classobj.setlineE = lineEU and classobj.setlineEU = lineEU")
 
             try:
                 eval(classobj.lineE)
@@ -82,20 +82,20 @@ class CalculatorInputLogic():
             #find char extra in lineEU
 
             operator = self.findOperator(classobj.lineEU)
-            print "Operator in lineEU is ", operator
+            print("Operator in lineEU is ", operator)
             posOfLineETxtinLineEU = classobj.lineEU.rfind(operator + classobj.lineE )
-            print "Position is ", posOfLineETxtinLineEU
+            print("Position is ", posOfLineETxtinLineEU)
             #find string in lineEU before position found above
             inititalStrEU = classobj.lineEU[:posOfLineETxtinLineEU]
-            print "Initial String in lineEU is ",inititalStrEU
+            print("Initial String in lineEU is ",inititalStrEU)
             finalStringToShow = inititalStrEU + operator + classobj.lineE
-            print "Final String to Show is ",finalStringToShow
+            print("Final String to Show is ",finalStringToShow)
             try:
                 eval(finalStringToShow)
                 finalStringToShowLineE = self.calculateStrVal(finalStringToShow)
             except:
                 finalStringToShowLineE = classobj.lineE
-            print "Final String to show in lineE is ",finalStringToShowLineE
+            print("Final String to show in lineE is ",finalStringToShowLineE)
             classobj.setlineE = finalStringToShowLineE
             classobj.setlineEU = finalStringToShow
 
@@ -122,19 +122,19 @@ class CalculatorInputLogic():
         listOperator = [plus,minus,multiply,divide]
         maxi = max(listOperator)
         if maxi > -1:
-            print "Maximum is", maxi
+            print("Maximum is", maxi)
             operator = input[maxi]
-            print "operator is ", input[maxi]
+            print("operator is ", input[maxi])
         else:
             operator="-1"
         return operator
 
     def calculateStrVal (self,inputVal):
         #Calculate string value by using math operators
-        print "from calculateStr_val : Value Passed to me is ",inputVal
+        print("from calculateStr_val : Value Passed to me is ",inputVal)
         try :
             result = eval(inputVal)
-            print "Result is ",result
+            print("Result is ",result)
         except Exception as Messages:
             return str(Messages)
         return str(result)
@@ -154,7 +154,7 @@ class CalculatorInputLogic():
 
         #This will find the last operator in the string passed
         operator = self.findOperator(inputVal)
-        print " Operator is ", operator
+        print(" Operator is ", operator)
 
         if operator == "-1":
             a=inputVal
@@ -166,34 +166,34 @@ class CalculatorInputLogic():
 
             #finding a as the value of last operator example a in 2+3+4-5 is -5
             a = inputVal[temp:]
-            print "A is ", a
+            print("A is ", a)
             #finding b as the value of last operator example b in 2+3+4-5 is 2+3+4
             b = inputVal[:temp]
-            print "B is ", b
+            print("B is ", b)
 
         # if b d ont have any operators in it,  b will be final b i.e. if string /
         # was 2+3 then b is 2 this
         # otherwise we calculate b by if condition example if string was 2+3+1 where b is 2+3 we go to if
             if b.find("+") != -1 or b.find("-") != -1 or b.find("*") != -1 or b.find("/") != -1:
-                print "As b contains operators passing b to calculateStrVal as ", b
+                print("As b contains operators passing b to calculateStrVal as ", b)
                 #Find b by passing b to same function . This is use of recursive function
                 b = self.calculateStrVal(b)
 
-        print "A and B are :", a, "  ", b
+        print("A and B are :", a, "  ", b)
         #creating variable result which gives result of a and b , so if we had 3-4 , a = -4 , b =3 then /
         # result is -4+3 i.e. -1.0
         result = str(float(a)+float(b))
 
-        print "from CalculateStrVal : Result is ", result
+        print("from CalculateStrVal : Result is ", result)
 
         #Check if result will contain decimal points or not
 
         # dot will find the position of . in the result , so in -1.0 it will be 2
         dot = result.find(".")
-        print "position  dot is ", dot
+        print("position  dot is ", dot)
         #this will keep string after . so in -1.0 this will be 0
         strAfterDot=result[dot+1:]
-        print "Value after dot is ", strAfterDot
+        print("Value after dot is ", strAfterDot)
 
         #Check if result have anything more than 0 then send result else send value before .
         if int(strAfterDot) > 0:
@@ -214,8 +214,8 @@ class CalculatorInputLogic():
     # Moved to CalculatorInput Logic Module
     # Last update date 23rd Aug 2013
 
-        print "New Cycle : \n\n\n\n\n\n\n\n\n\n\n\n\nValue entered is ", inputVal
-        print "From add Txt before setting anything : lineE and lineEu are ", classobj.lineE, classobj.lineEU
+        print("New Cycle : \n\n\n\n\n\n\n\n\n\n\n\n\nValue entered is ", inputVal)
+        print("From add Txt before setting anything : lineE and lineEu are ", classobj.lineE, classobj.lineEU)
         #if We are entering anything very first time , i.e. when lineE is 0 and lineEU is empty
         if classobj.lineE == "0" and classobj.lineEU == "" and str(inputVal) in ("1", "2", "3", "4", "5", "6", "7",\
                 "8", "9"):
@@ -224,7 +224,7 @@ class CalculatorInputLogic():
             classobj.lineEU = inputVal
             classobj.setlineE = inputVal
             classobj.setlineEU = ""
-            print "from if of addTxt : value entered is ", inputVal
+            print("from if of addTxt : value entered is ", inputVal)
 
         #elif 0.01 for "("
         elif str(inputVal) in ("("):
@@ -236,17 +236,17 @@ class CalculatorInputLogic():
         elif str(inputVal) == "backspace":
             text=classobj.lineEdit.text()
             if len(text) == 1:
-                print "from backspace if and len(text) == 1 if"
+                print("from backspace if and len(text) == 1 if")
                 classobj.lineE="0"
                 classobj.lineEU=""
                 classobj.setlineE=classobj.lineE
                 classobj.setlineEU=""
             else:
-                print "from backspace if and len(text) > 1 "
+                print("from backspace if and len(text) > 1 ")
                 classobj.lineE=str(text[:len(text)-1])
                 classobj.lineEU=str(classobj.lineEU[:len(classobj.lineEU)-1])
                 classobj.setlineE=classobj.lineE
-            print "from elif 0.1 of addTxt : Value entered is Backspace"
+            print("from elif 0.1 of addTxt : Value entered is Backspace")
 
         #elif 0.2 for CE
         elif str(inputVal) == "CE":
@@ -260,7 +260,7 @@ class CalculatorInputLogic():
                 classobj.lineEU=""
                 classobj.setlineE=classobj.lineE
                 classobj.setlineEU=classobj.lineEU
-            print "from elif 0.2 of addTxt : Value entered is CE"
+            print("from elif 0.2 of addTxt : Value entered is CE")
 
         #elif 0.3 for C - Clear All
         elif str(inputVal) == "C" :
@@ -268,7 +268,7 @@ class CalculatorInputLogic():
             classobj.lineEU=""
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.lineEU
-            print "from elif 0.3 of addTxt . Value entered is : ",inputVal
+            print("from elif 0.3 of addTxt . Value entered is : ",inputVal)
 
         #elif 0.4 for under-root / square root
         elif str(inputVal) == "sqrt" :
@@ -289,26 +289,26 @@ class CalculatorInputLogic():
                 classobj.lineE = str(Messages)
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.lineEU
-            print "from elif 0.4 of addTxt for square root. Value entered is : ",inputVal
+            print("from elif 0.4 of addTxt for square root. Value entered is : ",inputVal)
         # For input value Negate
         elif str(inputVal) == "+-":
             bracketCountLeft = classobj.lineEU.count("(")
             bracketCountRight = classobj.lineEU.count(")")
             operator = self.findOperator(classobj.lineEU)
-            print "from elif 0.5 of addTxt , operator in ",classobj.lineEU," is ",operator
+            print("from elif 0.5 of addTxt , operator in ",classobj.lineEU," is ",operator)
             posOfOperator=classobj.lineEU.rfind(operator)
-            print "from elif 0.5 of addTxt , position of operator in ",classobj.lineEU," is ",posOfOperator
+            print("from elif 0.5 of addTxt , position of operator in ",classobj.lineEU," is ",posOfOperator)
             if bracketCountLeft == 0 and bracketCountRight == 0:
                 if classobj.lineE.find(".") == -1:
                     classobj.lineE=str(int(classobj.lineE) * -1)
                     if operator == "-1":
-                        if classobj.lineEU <> "":
+                        if classobj.lineEU != "":
                             classobj.lineEU=str(int(classobj.lineEU) * -1)
-                            print "lineU is ",classobj.lineEU
+                            print("lineU is ",classobj.lineEU)
                     else:
                         newStr=classobj.lineEU[:posOfOperator] + operator + str(int(classobj.lineEU[posOfOperator+1:]) * -1)
                         classobj.lineEU = newStr
-                    print "from elif 0.5 of addTxt , lineEU becomes",classobj.lineEU
+                    print("from elif 0.5 of addTxt , lineEU becomes",classobj.lineEU)
                 else:
                     classobj.lineE=str(float(classobj.lineE) * -1)
                     if posOfOperator == "-1":
@@ -316,16 +316,16 @@ class CalculatorInputLogic():
                     else:
                         newStr=classobj.lineEU[:posOfOperator] + operator + str(float(classobj.lineEU[posOfOperator+1:]) * -1)
                         classobj.lineEU = newStr
-                    print "from elif 0.5 of addTxt , lineEU becomes",classobj.lineEU
+                    print("from elif 0.5 of addTxt , lineEU becomes",classobj.lineEU)
             else:
-                print "Brackets and negate logic"
-                print "Find digit in the last which should be negated"
+                print("Brackets and negate logic")
+                print("Find digit in the last which should be negated")
                 #if last of lineEU is operator and ( in lineE <> )
                 #classobj.lineEU[-1:] in ("+","-","*","/") and
                 if classobj.lineE.count("(") != classobj.lineE.count(")"):
                     ##find last digit and negate it
                     lastDigit = int(self.findLastNumber(classobj.lineE))
-                    print 'negating, last digit is ',lastDigit
+                    print('negating, last digit is ',lastDigit)
                     classobj.lineE = classobj.lineE.replace(str(lastDigit),str(int(lastDigit)*-1))
                     classobj.lineEU = classobj.lineEU.replace(str(lastDigit),str(int(lastDigit)*-1))
                 elif  classobj.lineE.count("(") == classobj.lineE.count(")"):
@@ -334,7 +334,7 @@ class CalculatorInputLogic():
                     classobj.lineE= classobj.lineE.replace("(","-(")
                     classobj.lineEU = classobj.lineEU.replace("(,","-(")
             classobj.setlineE=classobj.lineE
-            print "from elif 0.5 when input is +- . lineE is ",classobj.lineE," LineEU is ",classobj.lineEU
+            print("from elif 0.5 when input is +- . lineE is ",classobj.lineE," LineEU is ",classobj.lineEU)
         # elif 0.6 for a 1/x
         elif str(inputVal) == "Reci" :
             #as per windows calculator it always compute squareroot for variable in lineE . and put the sqrt(lineE) to \
@@ -350,10 +350,10 @@ class CalculatorInputLogic():
                 classobj.lineEU=classobj.lineEditu.text() + " Reci("+classobj.lineE+")"
             a = '1/'
             classobj.lineE=str(float(eval(a + classobj.lineE)))
-            print "Calculated value for ", a + classobj.lineE
+            print("Calculated value for ", a + classobj.lineE)
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.lineEU
-            print "from elif 0.6 of addTxt for Reciprocate. Value entered is : ",inputVal
+            print("from elif 0.6 of addTxt for Reciprocate. Value entered is : ",inputVal)
         #elif 0.7 fir percentage
         elif str(inputVal) == "%":
             txtUpperLabel=str(classobj.lineEditu.text())
@@ -370,20 +370,20 @@ class CalculatorInputLogic():
                 classobj.lineEU=percentage
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.lineEU
-            print "from elif 0.7 of addTxt for Percentage. Value entered is : ",inputVal
+            print("from elif 0.7 of addTxt for Percentage. Value entered is : ",inputVal)
 
 
         # elif 1 for a wrong input at the very first input
         elif classobj.lineE == 0 and classobj.lineEU == "" and str(inputVal) in ("+", "-", "*", "/", ".", "0"):
 
-            print "from elif 1:Wrong input dear , Nothing changes"
+            print("from elif 1:Wrong input dear , Nothing changes")
     #Elif 2 for entering . twice , its sequence of elif is 2nd because we need to check second entry of dot before \
     # any second level entry could be made
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".") and classobj.lineEU[-1:]   \
             in ("1","2", "3", "4", "5", "6", "7", "8", "9", "0", ".") and str(inputVal) == "." and \
             classobj.lineE.find(".") != -1:
 
-            print "from elif 2:Wrong input dear , Nothing changes : Value entered is . and . is already present "
+            print("from elif 2:Wrong input dear , Nothing changes : Value entered is . and . is already present ")
 
     #Elif 3 for a second level entry for inputs except operators
         elif classobj.lineE[-1:] in ("1","2","3","4","5","6","7","8","9","0",".","(") and classobj.lineEU[-1:] in ("1",   \
@@ -394,7 +394,7 @@ class CalculatorInputLogic():
             classobj.lineEU=classobj.lineEU+inputVal
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=""
-            print "from elif 3 of addTxt : This was a second level entry for any digits and . "
+            print("from elif 3 of addTxt : This was a second level entry for any digits and . ")
 
     #Elif 4 for a operator entry when num of ( match number of )
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ")") and classobj.lineEU[-1:] in \
@@ -405,11 +405,11 @@ class CalculatorInputLogic():
             #classobj.lineEU=classobj.lineEU+inputVal
             #classobj.setlineE=classobj.lineE
             #classobj.setlineEU=classobj.lineEU
-            print "from elif 4 when input is operator and ( matches ) "
+            print("from elif 4 when input is operator and ( matches ) ")
 
-            print " Value which will be calculated for lineE is ", classobj.lineEU
+            print(" Value which will be calculated for lineE is ", classobj.lineEU)
             StrToPass = classobj.lineEU
-            print " Passing string to calculateStrVal", StrToPass
+            print(" Passing string to calculateStrVal", StrToPass)
             resultCalculateStr = self.calculateStrVal(StrToPass)
 
             classobj.lineE = resultCalculateStr
@@ -427,7 +427,7 @@ class CalculatorInputLogic():
             classobj.lineEU=classobj.lineEU+inputVal
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.setlineEU
-            print "from elif 4 when input is operator and ( dosent match )"
+            print("from elif 4 when input is operator and ( dosent match )")
 
     #Elif 4.101 for a operator entry when ( dosent match ) and setlineEU != ""
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".",")") and classobj.lineEU[-1:] in \
@@ -438,7 +438,7 @@ class CalculatorInputLogic():
             classobj.lineEU=classobj.lineEU+inputVal
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.setlineEU
-            print "Elif 4.101 for a operator entry when ( dosent match ) and setlineEU != null"
+            print("Elif 4.101 for a operator entry when ( dosent match ) and setlineEU != null")
 
     #Elif 4.2 for digit entry when last lineEU is operator
         elif classobj.lineE[-1:] in ("+", "-", "*", "/") and str(inputVal) in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")\
@@ -448,7 +448,7 @@ class CalculatorInputLogic():
             classobj.lineEU=classobj.lineEU+str(inputVal)
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.setlineEU
-            print "from elif 4.2 when input is digit after + due to ( inside lineE  "
+            print("from elif 4.2 when input is digit after + due to ( inside lineE  ")
 
     #Elif 5 for digit entry when last lineEU is operator
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ")") and classobj.lineEU[-1:] in \
@@ -458,7 +458,7 @@ class CalculatorInputLogic():
             classobj.lineEU=classobj.lineEU+inputVal
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.setlineEU
-            print "from elif 5 when input is digit  "
+            print("from elif 5 when input is digit  ")
     
     #Elif 6 Digit entry when last in setLineEU in operator and last in lineEU is not operator and entry is digit
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".") and classobj.lineEU[-1:] \
@@ -469,7 +469,7 @@ class CalculatorInputLogic():
             classobj.lineEU=classobj.lineEU+inputVal
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.setlineEU
-            print "from elif 6 when input is digit , last entry in setLineEU is operator and last in lineEU is digit  "
+            print("from elif 6 when input is digit , last entry in setLineEU is operator and last in lineEU is digit  ")
 
 
     #Elif 6.1 Digit entry when last in LineE is ( and last in lineEU is ( and entry is digit
@@ -481,7 +481,7 @@ class CalculatorInputLogic():
             classobj.lineEU=classobj.lineEU+inputVal
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.setlineEU
-            print "from elif 6.1 when input is digit , last entry in LineEU  and lineE is (  "
+            print("from elif 6.1 when input is digit , last entry in LineEU  and lineE is (  ")
 
      #Elif 6.101 Digit entry when last in setLineEU in anything and last in lineEU is not operator
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".") and classobj.lineEU[-1:] \
@@ -492,23 +492,23 @@ class CalculatorInputLogic():
             classobj.lineEU=classobj.lineEU+inputVal
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.setlineEU
-            print "6.101 Digit entry when last in setLineEU in anything and last in lineEU is not operator . this is to support SE s "
+            print("6.101 Digit entry when last in setLineEU in anything and last in lineEU is not operator . this is to support SE s ")
 
     #Elif 7 when entry is operator,last in setLineEU is operator and last in lineEU is not operator and
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".") and classobj.lineEU[-1:] \
             in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".") and str(inputVal) in ("+", "-","*","/") \
             and classobj.setlineEU[-1:] in ("+", "-", "*", "/") and classobj.lineEU.count("(") == classobj.lineEU.count(")"):
 
-            print " Value which will be calculated for lineE is ", classobj.lineEU
+            print(" Value which will be calculated for lineE is ", classobj.lineEU)
             StrToPass = classobj.lineEU
-            print " Passing string to calculateStrVal", StrToPass
+            print(" Passing string to calculateStrVal", StrToPass)
             resultCalculateStr = self.calculateStrVal(StrToPass)
 
             classobj.lineE = resultCalculateStr
             classobj.lineEU = classobj.lineEU+inputVal
             classobj.setlineE = classobj.lineE
             classobj.setlineEU = classobj.lineEU
-            print "from elif 7 when last in setLineEU = operator, last in lineEU != operator and entry is operator and ( == )"
+            print("from elif 7 when last in setLineEU = operator, last in lineEU != operator and entry is operator and ( == )")
 
         #Elif 7.1 when entry is operator,last in setLineEU is operator and last in lineEU is not operator and
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".") and classobj.lineEU[-1:] \
@@ -519,7 +519,7 @@ class CalculatorInputLogic():
             classobj.lineEU = classobj.lineEU+inputVal
             classobj.setlineE = classobj.lineE
             classobj.setlineEU = classobj.lineEU
-            print "from elif 7.1 when last in setLineEU = operator, last in lineEU != operator and entry is operator and ( != )"
+            print("from elif 7.1 when last in setLineEU = operator, last in lineEU != operator and entry is operator and ( != )")
 
         #Elif 7.101 when entry Operator last in setLineEU is anything and last in lineEU is not operator .This case will support SE s
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".") and classobj.lineEU[-1:] \
@@ -530,7 +530,7 @@ class CalculatorInputLogic():
             classobj.lineEU = classobj.lineEU+inputVal
             classobj.setlineE = classobj.lineE
             classobj.setlineEU = classobj.lineEU
-            print "from elif 7.101 when entry Operator last in setLineEU is anything and last in lineEU is not operator .This case will support SE s, last in lineEU != operator and entry is operator and ( != )"
+            print("from elif 7.101 when entry Operator last in setLineEU is anything and last in lineEU is not operator .This case will support SE s, last in lineEU != operator and entry is operator and ( != )")
         #Elif 7.2 for a operator entry when num of ( match number of ) and setlineEU is not ""
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ")") and classobj.lineEU[-1:] in \
                 ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", ")") and str(inputVal) in ("+", "-", "*", "/") and     \
@@ -540,11 +540,11 @@ class CalculatorInputLogic():
             #classobj.lineEU=classobj.lineEU+inputVal
             #classobj.setlineE=classobj.lineE
             #classobj.setlineEU=classobj.lineEU
-            print "from elif 7.2 when input is operator and ( matches ) "
+            print("from elif 7.2 when input is operator and ( matches ) ")
 
-            print " Value which will be calculated for lineE is ", classobj.lineEU
+            print(" Value which will be calculated for lineE is ", classobj.lineEU)
             StrToPass = classobj.lineEU
-            print " Passing string to calculateStrVal", StrToPass
+            print(" Passing string to calculateStrVal", StrToPass)
             resultCalculateStr = self.calculateStrVal(StrToPass)
 
             classobj.lineE = resultCalculateStr
@@ -554,7 +554,7 @@ class CalculatorInputLogic():
             
     #Elif 8 when operator entered is =
         elif str(inputVal) == "=":
-            print "classobj.lineEU[:1] is :", classobj.lineEU[:-1]
+            print("classobj.lineEU[:1] is :", classobj.lineEU[:-1])
             if classobj.lineEU.count("(") == classobj.lineEU.count(")"):
                 if classobj.lineEU == "":
                     StrToPass = str(classobj.lineE)
@@ -564,7 +564,7 @@ class CalculatorInputLogic():
                 else:
                     StrToPass = str(classobj.lineEU)
 
-                print " Passing string to calculateStrVal",StrToPass
+                print(" Passing string to calculateStrVal",StrToPass)
                 resultCalculateStr = self.calculateStrVal(StrToPass)
 
 
@@ -573,8 +573,8 @@ class CalculatorInputLogic():
                 classobj.setlineE = classobj.lineE
                 classobj.setlineEU = classobj.lineEU
             else:
-                print "Do nothing"
-            print "from elif 8 where passed input is ="
+                print("Do nothing")
+            print("from elif 8 where passed input is =")
 
     #Elif 9 , anything after = was pressed , almost same as first time entry
         elif classobj.lineE[-1:] in ("1","2","3","4","5","6","7","8","9","0",".") and classobj.lineEU == "" and str(inputVal) in \
@@ -583,7 +583,7 @@ class CalculatorInputLogic():
             classobj.lineE=inputVal
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=""
-            print "from elif 9: value entered is ",input
+            print("from elif 9: value entered is ",input)
         
         #Elif 10 , anything after = was pressed , almost same as first time entry
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0") and classobj.lineEU == "" and  str(inputVal) in \
@@ -593,13 +593,13 @@ class CalculatorInputLogic():
             classobj.lineEU=classobj.lineE+inputVal
             classobj.setlineE=classobj.lineE
             classobj.setlineEU=classobj.lineEU
-            print "from elif 10 when input is operator: anything after =",inputVal
+            print("from elif 10 when input is operator: anything after =",inputVal)
 
         else:
-            print "From Else: value entered is", inputVal
+            print("From Else: value entered is", inputVal)
 
-        print "CalculatorInputLogic from add Txt of after setting : lineE :",classobj.lineE,"lineEu : ",classobj.lineEU, \
-        "setLine : ",classobj.setlineE,"setlineEU : ",classobj.setlineEU
+        print("CalculatorInputLogic from add Txt of after setting : lineE :",classobj.lineE,"lineEu : ",classobj.lineEU, \
+        "setLine : ",classobj.setlineE,"setlineEU : ",classobj.setlineEU)
         classobj.lineEdit.setText(classobj.setlineE)
         classobj.lineEditu.setText(classobj.setlineEU)
 
@@ -608,9 +608,9 @@ class CalculatorInputLogic():
         # if none is found -1 is returned
         for i in inputVal:
             if i in ("+", "-", "*", "/"):
-                print "First Operator found : ", i
+                print("First Operator found : ", i)
                 return i
-        print "No Operator present in string"
+        print("No Operator present in string")
         return -1
 
     def brackets(self,inputVal,classobj):
@@ -619,21 +619,21 @@ class CalculatorInputLogic():
             classobj.lineEU = inputVal
             classobj.setlineE = inputVal
             classobj.setlineEU = ""
-            print "from if of brackets : value entered is ", inputVal
+            print("from if of brackets : value entered is ", inputVal)
         #Elif 1 ( operator entry when ( is already present
         elif classobj.lineEU[-1:] in ("+","-","*","/","(") and classobj.lineE[-1:] == "(" and str(inputVal) in ("("):
             classobj.lineE = classobj.lineE + inputVal
             classobj.lineEU = classobj.lineEU + inputVal
             classobj.setlineE = classobj.lineE
             classobj.setlineEU = classobj.setlineEU
-            print "from elif 1 of brackets when ( is entered for non starting point having ( as last in lineE: value entered is ", inputVal
+            print("from elif 1 of brackets when ( is entered for non starting point having ( as last in lineE: value entered is ", inputVal)
         #Elif 2 ( left bracket entry when ( is already present and lineE last is a digit
         elif classobj.lineEU[-1:] in ("+","-","*","/","(") and classobj.lineE[-1:] not in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0","(") and str(inputVal) in ("("):
             classobj.lineE = classobj.lineE + inputVal
             classobj.lineEU = classobj.lineEU + inputVal
             classobj.setlineE = classobj.lineE
             classobj.setlineEU = classobj.setlineEU
-            print "from elif 2 of brackets when ( is entered for non starting point having digit as last in lineE: value entered is ", inputVal
+            print("from elif 2 of brackets when ( is entered for non starting point having digit as last in lineE: value entered is ", inputVal)
 
         #Elif 2.1 ( left bracket entry when lineE last is a digit
         elif classobj.lineEU[-1:] in ("+","-","*","/","(") and classobj.lineE[-1:]  in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0") and str(inputVal) in ("("):
@@ -641,11 +641,11 @@ class CalculatorInputLogic():
             classobj.lineEU = classobj.lineEU + inputVal
             classobj.setlineE = classobj.lineE
             classobj.setlineEU = classobj.setlineEU
-            print "from elif 2.1 ( left bracket entry when lineE last is a digit ", inputVal
+            print("from elif 2.1 ( left bracket entry when lineE last is a digit ", inputVal)
         #Elif 3 ) operator entry when ( is not present
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0") and  str(inputVal) in \
                 (")") and classobj.lineE.count("(") == classobj.lineE.count(")") :
-            print "from elif3 of brackets when ) can not be entered as ( and ) are same "
+            print("from elif3 of brackets when ) can not be entered as ( and ) are same ")
         #Elif 4 ) entry when ( is present
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0",")") and  str(inputVal) in \
                 (")") and str(int(classobj.lineE.count("("))) == str(int(classobj.lineE.count(")")) + 1) :
@@ -653,7 +653,7 @@ class CalculatorInputLogic():
             classobj.lineEU = classobj.lineEU+inputVal
             classobj.setlineE = classobj.lineE
             classobj.setlineEU = classobj.setlineEU
-            print "from elif4 of brackets when ) can be entered as ( and )+1 are same "
+            print("from elif4 of brackets when ) can be entered as ( and )+1 are same ")
 
         #Elif 5 Entry of ) i.e. right bracket when count of ( is greater than )
         elif classobj.lineE[-1:] in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0",")") and  str(inputVal) in \
@@ -662,10 +662,10 @@ class CalculatorInputLogic():
             classobj.lineEU = classobj.lineEU+inputVal
             classobj.setlineE = classobj.lineE
             classobj.setlineEU = classobj.setlineEU
-            print "from elif5 of brackets when ) can be entered as ( > )  are same "
+            print("from elif5 of brackets when ) can be entered as ( > )  are same ")
         else :
-            print "Else of brackets"
-            print "counts are "+str(int(classobj.lineE.count("(")))+" == "+str(int(classobj.lineE.count(")")) + 1)
-            print "Last of lineE is ",classobj.lineE[-1:]
-            print "Last of lineEU is ",classobj.lineEU[-1:]
-            print "value entered is ",str(inputVal)
+            print("Else of brackets")
+            print("counts are "+str(int(classobj.lineE.count("(")))+" == "+str(int(classobj.lineE.count(")")) + 1))
+            print("Last of lineE is ",classobj.lineE[-1:])
+            print("Last of lineEU is ",classobj.lineEU[-1:])
+            print("value entered is ",str(inputVal))

@@ -6,11 +6,11 @@ __author__ = 'pbatra'
 
 
 
-from PyQt4 import QtGui, QtCore
+from PyQt6 import QtWidgets, QtGui, QtCore
 #import PyQt4
 import sys
 #This is the current prod version
-class Contents(QtGui.QDialog):
+class Contents(QtWidgets.QDialog):
     def __init__(self):
         super(Contents,self).__init__()
         self.initUI()
@@ -27,7 +27,7 @@ class Contents(QtGui.QDialog):
         Content="""
 ---------------------------------------------------------------------------------------------------------
                                                 HELP DOCUMENTATION
-                                            Website : www.versionpb.com
+                                            Website : www.versionpb.co.in
                                                Author : Paarth Batra
 ---------------------------------------------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ class Contents(QtGui.QDialog):
 
 
     You can also refer Online Documentation
-        @ http://www.versionpb.com/documentation/bodmas-calculator-help
+        @ http://www.versionpb.co.in/documentation/bodmas-calculator-help
 
         or
     send E mail @ paarth.batra@gmail.com
@@ -136,7 +136,7 @@ class Contents(QtGui.QDialog):
 
 
 Documentation by Paarth Batra
-visit: http://www.versionpb.com
+visit: http://www.versionpb.co.in
 send comments or questions to paarth_batra@yahoo.co.in
 """
 
@@ -148,14 +148,16 @@ send comments or questions to paarth_batra@yahoo.co.in
         #scrollingWidget = QtGui.QScrollBar(self)
         #scrollingWidget.setMinimum(0)
         #scrollingWidget.setMaximum(100)
-        scrollArea=QtGui.QScrollArea(self)
+        scrollArea=QtWidgets.QScrollArea(self)
         scrollArea.setGeometry(0,0,500,250)
         scrollArea.setWidgetResizable(True)
         scrollArea.setEnabled(True)
         #scrollArea.setWidget(scrollingWidget)
         #self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         q=self.frameGeometry()                               # We get a rectangle specifying the geometry of the main window. This includes any window frame.
-        cp=QtGui.QDesktopWidget().availableGeometry().center()          #We figure out the screen resolution of our monitor. And from this resolution, we get the center point.
+        # cp=QtGui.QDesktopWidget().availableGeometry().center()          #We figure out the screen resolution of our monitor. And from this resolution, we get the center point.
+        screen = QtGui.QGuiApplication.primaryScreen()
+        cp = screen.availableGeometry().center()
         q.moveCenter(cp)                                            #Now we set the center of the rectangle to the center of the screen
         self.move(q.topLeft())
 
@@ -163,7 +165,7 @@ send comments or questions to paarth_batra@yahoo.co.in
         # Setting style sheet for the about us dialog window
 
 
-        label=QtGui.QLabel(self)
+        label=QtWidgets.QLabel(self)
         label.setGeometry(190,0,100,100)
         label.show()
         font1= QtGui.QFont("Comic Sans MS",6)
@@ -172,7 +174,7 @@ send comments or questions to paarth_batra@yahoo.co.in
 
 
         # Putting a Button on the About us Dialog box
-        OkButton=QtGui.QPushButton("OK",self)
+        OkButton=QtWidgets.QPushButton("OK",self)
         OkButton.move(400,210)
         OkButton.show()
         OkButton.setFocus()
@@ -184,7 +186,7 @@ send comments or questions to paarth_batra@yahoo.co.in
         font.setBold(False)
 
         # Putting a Label on About us Dialog Box
-        labelAboutUs=QtGui.QLabel(self)
+        labelAboutUs=QtWidgets.QLabel(self)
         labelAboutUs.setText(Content)
         labelAboutUs.setFont(font)
         labelAboutUs.move(5,10)
@@ -195,20 +197,18 @@ send comments or questions to paarth_batra@yahoo.co.in
 
 
 
-        self.setFocus(True)
+        self.setFocus()
         self.setModal(True)
-        self.exec_()
+        self.exec()
 
 
 
 def main():
 
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     ex2=Contents()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 
 if __name__ == '__main__':
     main()
-
-
