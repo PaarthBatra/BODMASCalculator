@@ -1,0 +1,12 @@
+Hi , 
+
+This is Basic Calculator Version 2.8 
+
+To execute just run Calculator.exe
+
+For any suggestions or questions , send e mail to :
+paarth_batra@yahoo.co.in or paarthh2@rediffmail.com
+
+
+Cheers :)
+Paarth
