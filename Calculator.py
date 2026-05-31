@@ -154,8 +154,11 @@ class Calculator(QtWidgets.QMainWindow):
             print('Left Bracket pressed')
             self.CallAddTxt("(")
         if key == QtCore.Qt.Key.Key_ParenRight:
-            print('Left Bracket pressed')
+            print('Right Bracket pressed')
             self.CallAddTxt(")")
+        if key == QtCore.Qt.Key.Key_AsciiCircum:
+            print('^ (Power) pressed')
+            self.CallAddTxt("^")
 
 
     def initUI(self):
@@ -668,6 +671,11 @@ class Calculator(QtWidgets.QMainWindow):
     # helper functions openRegisterurl and openurl Removed as they are no longer needed
 
 
+    def Copy(self):
+        """Copy current result (lower display) to clipboard."""
+        clipboard = QtWidgets.QApplication.clipboard()
+        clipboard.setText(self.lineE)
+
     def CopyE(self):
         # command = 'echo ' + ui.lineEU + '| clip'
         # os.system(command)
@@ -683,13 +691,13 @@ class Calculator(QtWidgets.QMainWindow):
         
         print("Passing data as",data)
         try:
-            v=eval(data)
+            v = CalculatorInputLogic().safe_eval(data)
             print(v)
             self.lineEdit.setText(data)
             self.lineE = data
         except Exception as E:
             print(E)
-            print("Wrong data")
+            print("Wrong data — only valid math expressions can be pasted")
         # w.CloseClipboard()
         #print txt
 
