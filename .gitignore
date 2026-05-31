@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyInstaller
+#  Usually these files are written by a python project's packaging process
+*.spec
+
+# Installer builds / dist
+build/
+dist/
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
